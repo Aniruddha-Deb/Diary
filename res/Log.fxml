@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.9113712374581939" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                  <Label fx:id="dateField" prefHeight="50.0" prefWidth="61.0" text="26" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="monthField" prefHeight="26.0" prefWidth="282.0" text="JANUARY" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="yearField" layoutY="29.0" prefHeight="22.0" prefWidth="190.0" text="2018" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="29.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="nextDayButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="&gt;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <Button fx:id="prevDayButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
+                  <Button fx:id="calendarButton" layoutX="276.0" layoutY="15.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="15.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <DatePicker fx:id="datePicker" promptText="Pick a Date" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="openDateButton" layoutX="211.0" layoutY="10.0" mnemonicParsing="false" text="Open" AnchorPane.leftAnchor="215.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

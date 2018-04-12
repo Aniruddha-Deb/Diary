@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane dividerPositions="0.9113712374581939" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.9933110367892977" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
@@ -30,9 +30,9 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="nextDayButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="&gt;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                  <Button fx:id="prevDayButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
-                  <Button fx:id="calendarButton" layoutX="276.0" layoutY="15.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="15.0" />
+                  <Button fx:id="nextDayButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onNextDayButtonClick" prefHeight="30.0" prefWidth="30.0" text="&gt;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <Button fx:id="prevDayButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onPreviousDayButtonClick" prefHeight="30.0" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
+                  <Button fx:id="calendarButton" layoutX="276.0" layoutY="15.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onCalendarButtonClick" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="15.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">

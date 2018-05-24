@@ -11,8 +11,6 @@ public class Diary extends Application{
 	
 	@Override
 	public void start( Stage primaryStage ) throws Exception {
-		Controller c = new Controller( primaryStage );
-		
-		primaryStage.show();
+		new Controller( primaryStage );
 	}
 }

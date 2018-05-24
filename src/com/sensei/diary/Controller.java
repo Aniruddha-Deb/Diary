@@ -9,6 +9,8 @@ import java.util.Optional;
 
 import com.sensei.diary.io.DiaryLoader;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +31,7 @@ import javafx.stage.Stage;
 import static com.sensei.diary.prefs.PreferenceManager.*;
 
 public class Controller {
-	
+		
 	@FXML
 	private Label dateField;
 	@FXML
@@ -100,7 +102,7 @@ public class Controller {
 	}
 		
 	private void addFontSizeChangeListener() {
-
+		
 		scene.setOnKeyPressed( e -> {
 			if( e.getCode() == KeyCode.EQUALS && e.isControlDown() ) {
 				textArea.setStyle( "-fx-font-size: " + (textArea.getFont().getSize()+2) + "px;" );
@@ -145,7 +147,8 @@ public class Controller {
 
 	@FXML
 	public void initialize() {		
-		currentDate = LocalDate.now();		
+		currentDate = LocalDate.now();
+		calendarButton.setGraphic( new FontAwesomeIconView( FontAwesomeIcon.CALENDAR ) );
 		textArea.setFont( Constants.FONT );
 		refreshView();		
 	}

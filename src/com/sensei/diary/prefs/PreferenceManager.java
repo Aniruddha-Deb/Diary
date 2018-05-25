@@ -11,8 +11,13 @@ public class PreferenceManager {
 	public static final String FONT_SIZE = "FONT_SIZE";
 	public static final String PREV_DIARY_FILE_LOC = "PREV_DIARY_FILE_LOC";
 	
-	public static Preferences getPreferences() {
+	public static String getPreference( String key ) {
 		if( prefs == null ) prefs = Preferences.userRoot().node( PREFS_NODE_NAME );
-		return prefs;
+		return prefs.get( key , null );
+	}
+	
+	public static void setPreference( String key, String value ) {
+		if( prefs == null ) prefs = Preferences.userRoot().node( PREFS_NODE_NAME );
+		prefs.put( key, value );
 	}
 }

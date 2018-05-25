@@ -28,9 +28,9 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="nextDayButton2" buttonType="RAISED" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onAction="#onNextDayButtonClick" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="calendarButton" buttonType="RAISED" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onAction="#onCalendarButtonClick" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="15.0" />
                   <JFXButton fx:id="nextDayButton" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onAction="#onNextDayButtonClick" prefHeight="30.0" prefWidth="30.0" text="&gt;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                  <JFXButton fx:id="nextDayButton1" buttonType="RAISED" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onAction="#onNextDayButtonClick" prefHeight="30.0" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="previousDayButton" buttonType="RAISED" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onAction="#onPreviousDayButtonClick" prefHeight="30.0" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
                </children>
             </AnchorPane>
             <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />

@@ -4,12 +4,11 @@ import static com.sensei.diary.prefs.PreferenceManager.PREV_DIARY_FILE_LOC;
 import static com.sensei.diary.prefs.PreferenceManager.getPreference;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.sensei.diary.io.DiaryFileLoader;
 
@@ -28,10 +27,10 @@ public class Diary extends Application {
 	public void start( Stage stage ) throws Exception {
 		
 		String diaryFileLoc = getDiaryFileLocation();
-		DiaryFileLoader dfl = new DiaryFileLoader( Paths.get( diaryFileLoc ) );
-		Map<LocalDate, String> entries = loadEntriesFromDFL( dfl );
+		DiaryFileLoader.initPath( Paths.get( diaryFileLoc ) );
+		Map<LocalDate, String> entries = loadEntriesFromDFL();
 		
-		Controller c = new Controller( entries );
+		Controller c = new Controller( entries, stage );
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation( Controller.class.getResource( "/Log_v2.fxml" ) );
@@ -57,15 +56,17 @@ public class Diary extends Application {
 		return diaryFileLocation;
 	}
 	
-	private Map<LocalDate, String> loadEntriesFromDFL( DiaryFileLoader dfl ) {		
+	private Map<LocalDate, String> loadEntriesFromDFL() {		
 		try {
-			return dfl.loadEntries();
+			return DiaryFileLoader.getInstance().loadEntries();
 		}
 		catch( IOException ex ) {
-			showErrorAlert( "An error occured while trying to load " + dfl.getPathAsString() );
+			showErrorAlert( "An error occured while trying to load " + 
+					DiaryFileLoader.getInstance().getPathAsString() );
 		}
 		catch( ClassNotFoundException ex ) {
-			showErrorAlert( "An error occured while trying to load " + dfl.getPathAsString() );
+			showErrorAlert( "An error occured while trying to load " + 
+					DiaryFileLoader.getInstance().getPathAsString() );
 		}
 		return null;
 	}

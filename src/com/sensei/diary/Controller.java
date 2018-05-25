@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.jfoenix.controls.JFXButton;
 import com.sensei.diary.io.DiaryFileLoader;
+import com.sensei.diary.prefs.PreferenceManager;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -17,7 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class Controller {
 		
@@ -49,15 +50,33 @@ public class Controller {
 	private LocalDate currentDate;
 	private Map<LocalDate, String> entries = null;
 	
-	public Controller( Map<LocalDate, String> entries ) throws IOException {
+	public Controller( Map<LocalDate, String> entries, Stage stage ) throws IOException {
 		this.entries = entries;
 		currentDate = LocalDate.now();
+		
+		addListeners( stage );
+	}
+	
+	private void addListeners( Stage stage ) {
+		stage.setOnCloseRequest( e -> {
+			PreferenceManager.setPreference( PreferenceManager.PREV_DIARY_FILE_LOC, 
+											DiaryFileLoader.getInstance().getPathAsString() );
+		} );
 	}
 	
 	private void refreshView() {
+		String entryforCurrentDate = entries.get( currentDate );
+		if( entryforCurrentDate != null ) textArea.setText( entryforCurrentDate );
+		else textArea.clear();
+		
 		dateField.setText( String.valueOf( currentDate.getDayOfMonth() ) );
 		monthField.setText( currentDate.getMonth().toString() );
 		yearField.setText( String.valueOf( currentDate.getYear() ) );		
+	}
+	
+	private void saveCurrentEntry() {
+		entries.put( currentDate, textArea.getText() );
+		DiaryFileLoader.getInstance().saveEntries( entries );
 	}
 	
 	@FXML
@@ -69,23 +88,21 @@ public class Controller {
 	
 	@FXML
 	public void onNextDayButtonClick( ActionEvent e ) {
+		saveCurrentEntry();
 		currentDate = currentDate.plus( Period.ofDays( 1 ) );
 		refreshView();
 	}
 	
 	@FXML
-	public void onSplitPaneMouseClicked( MouseEvent e ) {
-		System.out.println( "Mouse Clicked!" );
-	}
-	
-	@FXML
 	public void onPreviousDayButtonClick( ActionEvent e ) {
+		saveCurrentEntry();
 		currentDate = currentDate.minus( Period.ofDays( 1 ) );
 		refreshView();
 	}
 	
 	@FXML
 	public void onCalendarButtonClick( ActionEvent e ) {
+		saveCurrentEntry();
 		LocalDate ld = datePicker.getValue();
 		currentDate = ld;
 		refreshView();

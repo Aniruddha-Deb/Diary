@@ -4,11 +4,12 @@ import static com.sensei.diary.prefs.PreferenceManager.PREV_DIARY_FILE_LOC;
 import static com.sensei.diary.prefs.PreferenceManager.getPreference;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Optional;
 
 import com.sensei.diary.io.DiaryFileLoader;
 
@@ -17,17 +18,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class Diary extends Application {
 
 	@Override
 	public void start( Stage stage ) throws Exception {
-		
-		String diaryFileLoc = getDiaryFileLocation();
-		DiaryFileLoader.initPath( Paths.get( diaryFileLoc ) );
+
+		initDiaryFileLoader();
 		Map<LocalDate, String> entries = loadEntriesFromDFL();
 		
 		Controller c = new Controller( entries, stage );
@@ -44,34 +47,41 @@ public class Diary extends Application {
 		stage.show();
 	}
 	
-	private String getDiaryFileLocation() {
+	private void initDiaryFileLoader() throws Exception {
 		String diaryFileLocation = getPreference( PREV_DIARY_FILE_LOC );
-		if( diaryFileLocation == null ) {
+		Path p = Paths.get( diaryFileLocation );
+		if( diaryFileLocation == null || !Files.exists( p ) ) {
 			diaryFileLocation = launchNewDiaryFileWizard();
 			
 			if( diaryFileLocation == null )
 				// cancel button was pressed
-				System.exit( 0 );
+				stop();
 		}
-		return diaryFileLocation;
+		p = Paths.get( diaryFileLocation );
+		DiaryFileLoader.initPath( p );
 	}
 	
-	private Map<LocalDate, String> loadEntriesFromDFL() {		
+	private Map<LocalDate, String> loadEntriesFromDFL() throws Exception {		
 		try {
 			return DiaryFileLoader.getInstance().loadEntries();
 		}
-		catch( IOException ex ) {
+		catch( Exception ex ) {
 			showErrorAlert( "An error occured while trying to load " + 
 					DiaryFileLoader.getInstance().getPathAsString() );
-		}
-		catch( ClassNotFoundException ex ) {
-			showErrorAlert( "An error occured while trying to load " + 
-					DiaryFileLoader.getInstance().getPathAsString() );
+			stop();
 		}
 		return null;
 	}
 	
-	private String launchNewDiaryFileWizard() {
+	private String openFile() {
+		FileChooser chooser = new FileChooser();
+		chooser.setTitle( "Open a diary file" );
+		chooser.setSelectedExtensionFilter( new ExtensionFilter( "Diary file", "*.diary" ) );
+		File f = chooser.showOpenDialog( null );
+		return f == null ? null : f.getAbsolutePath() ;		
+	}
+	
+	private String createFile() {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle( "Create a new diary file" );
 		chooser.setInitialFileName( ".diary" );
@@ -79,14 +89,28 @@ public class Diary extends Application {
 		if( f != null ) {
 			if( !f.getName().endsWith( ".diary" ) ) {
 				showErrorAlert( "The file was not saved with a .diary extension." );
-				return launchNewDiaryFileWizard();
+				return createFile();
 			}
 			else {
-				DiaryFileLoader.createFile( f.toPath() );
-				return f.getPath();
+				return f.getAbsolutePath();
 			}
-		}
+		}	
 		return null;
+	}
+	
+	private String launchNewDiaryFileWizard() {
+		Alert alert = new Alert( AlertType.ERROR );
+		alert.setHeaderText( "The previously opened diary file could not be found" );
+		alert.getButtonTypes().remove( 0 );
+		alert.getButtonTypes().add( new ButtonType( "Open another file", ButtonData.YES ) );
+		alert.getButtonTypes().add( new ButtonType( "Create a new file", ButtonData.NO ) );
+		Optional<ButtonType> btypes = alert.showAndWait();
+		if( btypes.get().getButtonData() == ButtonData.YES ) {
+			return openFile();			
+		}
+		else {
+			return createFile();
+		}
 	}
 		
 	private void showErrorAlert( String error ) {

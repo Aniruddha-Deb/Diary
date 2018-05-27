@@ -38,6 +38,20 @@
                         </MenuItem>
                      </items>
                   </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#increaseFont" text="Increase font">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="EQUALS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#decreaseFont" text="Decrease font">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="MINUS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                  </Menu>
                   <Menu mnemonicParsing="false" text="Navigate">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onNextDayButtonClick" text="Next">

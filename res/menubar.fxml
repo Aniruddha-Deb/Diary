@@ -6,11 +6,11 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.input.KeyCodeCombination?>
 
-<MenuBar xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<MenuBar xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
   <menus>
     <Menu mnemonicParsing="false" text="File">
       <items>
-        <MenuItem mnemonicParsing="false" onAction="#onNewFIleClick" text="New">
+        <MenuItem mnemonicParsing="false" onAction="#onNewFileClick" text="New">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                </accelerator></MenuItem>

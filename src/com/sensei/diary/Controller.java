@@ -1,5 +1,6 @@
 package com.sensei.diary;
 
+import java.awt.TextField;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -13,12 +14,14 @@ import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -47,6 +50,8 @@ public class Controller {
 	private DatePicker datePicker;
 	private Node datePickerPopupContent;
 	
+	private int fontSize;
+	
 	private Stage stage = null;
 	private LocalDate currentDate;
 	private Map<LocalDate, String> entries = null;
@@ -63,6 +68,8 @@ public class Controller {
 		stage.setOnCloseRequest( e -> {
 			PreferenceManager.setPreference( PreferenceManager.PREV_DIARY_FILE_LOC, 
 											DiaryFileLoader.getInstance().getPathAsString() );
+			PreferenceManager.setPreference( PreferenceManager.FONT_SIZE, 
+											 String.valueOf( fontSize ) );
 			saveCurrentEntry();
 		} );
 	}
@@ -91,6 +98,18 @@ public class Controller {
 		datePickerPopupContent = new DatePickerSkin( datePicker ).getPopupContent();
 		menuBar.setUseSystemMenuBar( true );
 		refreshView();		
+		
+		fontSize = loadFontSize();
+	}
+	
+	private int loadFontSize() {
+		String font = PreferenceManager.getPreference( PreferenceManager.FONT_SIZE );
+		return 12;
+//		if( font == null ) { 
+//			PreferenceManager.setPreference( PreferenceManager.FONT_SIZE, "12" );
+//			return 12;			
+//		}
+//		else return Integer.parseInt( font );
 	}
 	
 	@FXML
@@ -142,5 +161,19 @@ public class Controller {
 	@FXML
 	public void onPreferencesClick( ActionEvent e ) {
 		// TODO implement
+	}
+	
+	@FXML
+	public void increaseFont( ActionEvent e ) {
+		System.out.println( "Heycode works" );
+		fontSize += 2;
+		textArea.setStyle( "-fx-font-size: "+fontSize+"px" );
+	}
+	
+	@FXML
+	public void decreaseFont( ActionEvent e ) {
+		System.out.println( "Keycode works" );
+		fontSize -= 2;
+		textArea.setStyle( "-fx-font-size: "+fontSize+"px" );		
 	}
 }

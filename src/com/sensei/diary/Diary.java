@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -44,7 +45,7 @@ public class Diary extends Application {
 		stage.setScene( scene );
 		stage.setMinHeight( 600 );
 		stage.setMinWidth( 400 );
-		stage.show();
+		stage.show();		
 	}
 	
 	private void initDiaryFileLoader() throws Exception {

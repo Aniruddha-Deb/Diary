@@ -6,9 +6,6 @@ import java.time.Period;
 import java.util.Map;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.skins.JFXDatePickerContent;
-import com.jfoenix.skins.JFXDatePickerSkin;
 import com.sensei.diary.io.DiaryFileLoader;
 import com.sensei.diary.prefs.PreferenceManager;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
@@ -20,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -39,6 +37,9 @@ public class Controller {
 	private JFXButton prevDayButton;
 	@FXML
 	private JFXButton calendarButton;
+	
+	@FXML
+	private MenuBar menuBar;
 
 	@FXML 
 	private TextArea textArea;
@@ -88,6 +89,7 @@ public class Controller {
 		textArea.setFont( Constants.FONT );
 		datePicker = new DatePicker();
 		datePickerPopupContent = new DatePickerSkin( datePicker ).getPopupContent();
+		menuBar.setUseSystemMenuBar( true );
 		refreshView();		
 	}
 	
@@ -124,6 +126,21 @@ public class Controller {
 			refreshView();
 			p.hide();
 		});
-		
+	
+	}
+	
+	@FXML
+	public void onNewFileClick( ActionEvent e ) {
+		// TODO implement
+	}
+	
+	@FXML
+	public void onOpenFileClick( ActionEvent e ) {
+		// TODO implement
+	}
+	
+	@FXML
+	public void onPreferencesClick( ActionEvent e ) {
+		// TODO implement
 	}
 }

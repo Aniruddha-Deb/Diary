@@ -42,12 +42,12 @@
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#increaseFont" text="Increase font">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="EQUALS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                              <KeyCodeCombination alt="UP" code="PLUS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                            </accelerator>
                         </MenuItem>
                         <MenuItem mnemonicParsing="false" onAction="#decreaseFont" text="Decrease font">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="SUBTRACT" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                              <KeyCodeCombination alt="UP" code="MINUS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                            </accelerator>
                         </MenuItem>
                      </items>

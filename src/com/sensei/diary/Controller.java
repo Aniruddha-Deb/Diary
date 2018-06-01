@@ -21,6 +21,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCharacterCombination;
+import javafx.scene.input.KeyCombination.Modifier;
+import javafx.scene.input.KeyCombination.ModifierValue;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -100,7 +103,7 @@ public class Controller {
 		menuBar.setUseSystemMenuBar( true );
 		refreshView();		
 		
-		fontSize = loadFontSize();
+		fontSize = loadFontSize();		
 	}
 	
 	private int loadFontSize() {
@@ -147,6 +150,16 @@ public class Controller {
 			p.hide();
 		});
 	
+	}
+	
+	// TODO change hacky code
+	public void fireFontPlus() {
+		menuBar.getMenus().get( 1 ).getItems().get( 0 ).fire();
+	}
+	
+	// TODO change hacky code
+	public void fireFontMinus() {
+		menuBar.getMenus().get( 1 ).getItems().get( 1 ).fire();		
 	}
 	
 	@FXML

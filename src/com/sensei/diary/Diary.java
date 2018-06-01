@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
+import java.util.ResourceBundle.Control;
 
 import com.sensei.diary.io.DiaryFileLoader;
 
@@ -21,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -42,11 +44,22 @@ public class Diary extends Application {
 		
 		AnchorPane ap = (AnchorPane)loader.load();
 		Scene scene = new Scene( ap );
-		scene.setOnKeyPressed( e -> System.out.println( e.getCode() ) );
+		addSceneListener( scene, c );
 		stage.setScene( scene );
 		stage.setMinHeight( 600 );
 		stage.setMinWidth( 400 );
 		stage.show();		
+	}
+	
+	private void addSceneListener( Scene scene, Controller c ) {
+		scene.setOnKeyPressed( e -> {
+			if( e.getCode() == KeyCode.MINUS && e.isShortcutDown() ) {
+				c.fireFontMinus();
+			}
+			else if( e.getCode() == KeyCode.EQUALS && e.isShortcutDown() ) {
+				c.fireFontPlus();
+			}
+		});
 	}
 	
 	private void initDiaryFileLoader() throws Exception {

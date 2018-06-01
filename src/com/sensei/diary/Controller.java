@@ -72,6 +72,7 @@ public class Controller {
 											 String.valueOf( fontSize ) );
 			saveCurrentEntry();
 		} );
+		//stage.getScene().setOnKeyPressed( e -> System.out.println( e.getCode() ) );
 	}
 	
 	private void refreshView() {
@@ -165,14 +166,14 @@ public class Controller {
 	
 	@FXML
 	public void increaseFont( ActionEvent e ) {
-		System.out.println( "Heycode works" );
+		System.out.println( "Increase font method called" );
 		fontSize += 2;
 		textArea.setStyle( "-fx-font-size: "+fontSize+"px" );
 	}
 	
 	@FXML
 	public void decreaseFont( ActionEvent e ) {
-		System.out.println( "Keycode works" );
+		System.out.println( "Decrease font method called" );
 		fontSize -= 2;
 		textArea.setStyle( "-fx-font-size: "+fontSize+"px" );		
 	}

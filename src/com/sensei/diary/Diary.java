@@ -42,6 +42,7 @@ public class Diary extends Application {
 		
 		AnchorPane ap = (AnchorPane)loader.load();
 		Scene scene = new Scene( ap );
+		scene.setOnKeyPressed( e -> System.out.println( e.getCode() ) );
 		stage.setScene( scene );
 		stage.setMinHeight( 600 );
 		stage.setMinWidth( 400 );

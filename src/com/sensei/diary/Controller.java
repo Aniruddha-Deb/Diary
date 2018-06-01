@@ -25,6 +25,7 @@ import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCombination.Modifier;
 import javafx.scene.input.KeyCombination.ModifierValue;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -103,17 +104,18 @@ public class Controller {
 		menuBar.setUseSystemMenuBar( true );
 		refreshView();		
 		
-		fontSize = loadFontSize();		
+		fontSize = loadFontSize();	
+		Constants.FONT = new Font( Constants.FONT.getFamily(), fontSize );
+		textArea.setFont( Constants.FONT );
 	}
 	
 	private int loadFontSize() {
 		String font = PreferenceManager.getPreference( PreferenceManager.FONT_SIZE );
-		return 12;
-//		if( font == null ) { 
-//			PreferenceManager.setPreference( PreferenceManager.FONT_SIZE, "12" );
-//			return 12;			
-//		}
-//		else return Integer.parseInt( font );
+		if( font == null ) { 
+			PreferenceManager.setPreference( PreferenceManager.FONT_SIZE, "12" );
+			return 12;			
+		}
+		else return Integer.parseInt( font );
 	}
 	
 	@FXML
